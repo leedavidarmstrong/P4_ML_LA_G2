@@ -1,0 +1,172 @@
+
+# LSTM Model Creation N
+model = Sequential()
+model.add(Bidirectional(LSTM(100, return_sequences=True), input_shape=(look_back, 3)))
+model.add(Dense(64, activation='relu', kernel_regularizer=l1_l2(l1=1e-5, l2=1e-4)))
+model.add(BatchNormalization())
+model.add(Dropout(0.2))
+model.add(Bidirectional(LSTM(50)))
+model.add(Dropout(0.2))
+model.add(Dense(1, activation='sigmoid'))
+
+# Optimisation changes 
+# Added model.add(Dense(64, activation='relu', kernel_regularizer=l1_l2(l1=1e-5, l2=1e-4)))
+
+
+# LSTM Model Creation M
+model = Sequential()
+model.add(Bidirectional(LSTM(100, return_sequences=True), input_shape=(look_back, 3)))
+model.add(BatchNormalization())
+model.add(Dropout(0.2))
+model.add(Bidirectional(LSTM(50)))
+model.add(Dropout(0.2))
+model.add(Dense(1, activation='sigmoid'))
+
+# Optimisation changes 
+# Moved sigmoid activation to last Dense layer 
+
+
+# LSTM Model Creation L
+model = Sequential()
+model.add(Bidirectional(LSTM(100, return_sequences=True), input_shape=(look_back, 3)))  # Bidirectional LSTM
+model.add(BatchNormalization())  # Batch Normalization
+model.add(Dropout(0.2))
+model.add(Bidirectional(LSTM(50)))  # Second LSTM layer
+model.add(Dropout(0.2))
+model.add(Dense(1))
+
+# Optimisation changes 
+# Bidirectional LSTM 
+# Changed input_shape to (look_back, 3) 
+# Batch Normalization
+# Dropout 
+# Second LSTM layer
+
+# LSTM Model Creation K
+model = Sequential()
+model.add(LSTM(50, return_sequences=True, input_shape=(time_step, 1)))
+model.add(LSTM(50, return_sequences=False))
+model.add(Dense(25))
+model.add(Dense(1))
+
+# Optimisation changes 
+# Added return_sequences
+# Changed input_shape look_back, 2 to time_step, 1 
+# Added second Dense layer 
+
+# LSTM Model Creation J
+model = Sequential()
+model.add(LSTM(50, input_shape=(look_back, 2)))
+model.add(Dense(1))
+
+# Optimisation changes 
+# Changed from lstm to model function
+# Removed (input_layer)
+# Added input_shape=(time_step, 1)))
+
+# # LSTM Model Creation I
+# lstm1 = LSTM(50, return_sequences=True, kernel_regularizer=l2(0.005))(input_layer)  # Reduced L2 regularization
+# dropout1 = Dropout(0.15)(lstm1)  # Reduced dropout rate
+# lstm2 = LSTM(50, return_sequences=False, kernel_regularizer=l2(0.005))(dropout1)  # Reduced L2 regularization
+# dropout2 = Dropout(0.15)(lstm2)  # Reduced dropout rate
+# dense1 = Dense(25)(dropout2)
+# output_layer = Dense(1)(dense1)
+
+
+
+# Optimisation changes
+lstm before this point / model.add after this point
+
+
+
+# # LSTM Model Creation H
+# input_layer = Input(shape=(time_step, 1))
+# lstm1 = Bidirectional(LSTM(50, return_sequences=True, kernel_regularizer=l2(0.01)))(input_layer)
+# dropout1 = Dropout(0.3)(lstm1)
+# batch_norm1 = BatchNormalization()(dropout1)
+# lstm2 = Bidirectional(LSTM(50, return_sequences=False, kernel_regularizer=l2(0.01)))(batch_norm1)
+# dropout2 = Dropout(0.3)(lstm2)
+# dense1 = Dense(25)(dropout2)
+# output_layer = Dense(1)(dense1)
+
+# Optimisation changes, Added. 
+
+
+# # LSTM Model Creation G
+# lstm1 = LSTM(50, return_sequences=True, kernel_regularizer=l2(0.01))(input_layer)
+# dropout1 = Dropout(0.2)(lstm1)
+# lstm2 = LSTM(50, return_sequences=False, kernel_regularizer=l2(0.01))(dropout1)
+# dropout2 = Dropout(0.2)(lstm2)
+# dense1 = Dense(25)(dropout2)
+# output_layer = Dense(1)(dense1)
+
+# Optimisation changes, Added. 
+
+
+# # LSTM Model Creation F
+# lstm1 = LSTM(50, return_sequences=True)(input_layer)
+# lstm2 = LSTM(50, return_sequences=False)(lstm1)
+# dense1 = Dense(25)(lstm2)
+# output_layer = Dense(1)(dense1)
+
+# Optimisation changes, Added. 
+
+
+# # LSTM Model Creation E
+# lstm1 = LSTM(50, return_sequences=True)(input_layer)
+# lstm2 = LSTM(50, return_sequences=False)(lstm1)
+# dense1 = Dense(25)(lstm2)
+# output_layer = Dense(1)(dense1)
+
+# Optimisation changes, Added. 
+
+
+# # LSTM Model Creation D
+# lstm1 = LSTM(50, return_sequences=True, kernel_regularizer=l2(0.01))(input_layer)
+# dropout1 = Dropout(0.2)(lstm1)
+# lstm2 = LSTM(50, return_sequences=False, kernel_regularizer=l2(0.01))(dropout1)
+# dropout2 = Dropout(0.2)(lstm2)
+# dense1 = Dense(25)(dropout2)
+# output_layer = Dense(1)(dense1)
+
+# Optimisation changes, Added. 
+
+
+# # LSTM Model Creation D
+# input_layer = Input(shape=(time_step, 1))
+# lstm1 = Bidirectional(LSTM(50, return_sequences=True, kernel_regularizer=l2(0.01)))(input_layer)
+# dropout1 = Dropout(0.3)(lstm1)
+# batch_norm1 = BatchNormalization()(dropout1)
+# lstm2 = Bidirectional(LSTM(50, return_sequences=False, kernel_regularizer=l2(0.01)))(batch_norm1)
+# dropout2 = Dropout(0.3)(lstm2)
+# dense1 = Dense(25)(dropout2)
+# output_layer = Dense(1)(dense1)
+
+# Optimisation changes, Added. 
+
+
+# LSTM Model Creation C
+lstm1 = LSTM(50, return_sequences=True, kernel_regularizer=l2(0.005))(input_layer)  # Reduced L2 regularization
+dropout1 = Dropout(0.15)(lstm1)  # Reduced dropout rate
+lstm2 = LSTM(50, return_sequences=False, kernel_regularizer=l2(0.005))(dropout1)  # Reduced L2 regularization
+dropout2 = Dropout(0.15)(lstm2)  # Reduced dropout rate
+dense1 = Dense(25)(dropout2)
+output_layer = Dense(1)(dense1)
+
+# Optimisation changes, Added. 
+
+
+# LSTM Model Creation B
+lstm1 = LSTM(50, return_sequences=True)(input_layer)
+lstm2 = LSTM(50, return_sequences=False)(lstm1)
+dense1 = Dense(25)(lstm2)
+output_layer = Dense(1)(dense1)
+
+# Optimisation changes  
+# Added 
+# Initial build
+
+# LSTM Model Creation A
+# Define the input layer with the input shape
+input_layer = Input(shape=(time_step, 1))
+
